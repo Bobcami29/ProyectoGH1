@@ -22,7 +22,7 @@ jobs:
 
     - name: Set up authentication
       run: |
-        git config --global url."https://${{ secrets.PROYECTOGH1 }}@github.com/".insteadOf "https://github.com/"
+        git config --global url."https://${{ secrets.ProyectoGH1 }}@github.com/".insteadOf "https://github.com/"
 
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4

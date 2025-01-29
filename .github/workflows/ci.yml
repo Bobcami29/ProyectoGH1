@@ -1,23 +1,28 @@
-name: CI Workflow
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - main  
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: |
-          cd my-subfolder # Si package.json está en una subcarpeta
-          npm install
-      - name: Run tests
-        run: |
-          cd my-subfolder # Si los tests están en una subcarpeta
-          npm test
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages  # La rama donde se publicará el sitio
+        folder: . 
